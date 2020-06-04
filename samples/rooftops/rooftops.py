@@ -68,7 +68,7 @@ class RooftopsConfig(Config):
     IMAGES_PER_GPU = 2
 
     # Number of classes (including background)
-    NUM_CLASSES = 4 # rooftops
+    NUM_CLASSES = 1 + 1 # rooftops
 
     # Number of training steps per epoch
     STEPS_PER_EPOCH = 100
@@ -89,8 +89,8 @@ class RooftopsDataset(utils.Dataset):
         """
         # Add classes
         self.add_class("rooftops", 1, "roofplane")
-        self.add_class("rooftops", 2, "vent_pipe")
-        self.add_class("rooftops", 3, "chimney")
+        # self.add_class("rooftops", 2, "vent_pipe")
+        # self.add_class("rooftops", 3, "chimney")
 
         # Scanifly's Custom Image Annotator at scanifly-cv.herokuapp.com
         # saves each image in the form:
@@ -128,7 +128,7 @@ class RooftopsDataset(utils.Dataset):
             if file.endswith(".jpeg"):
                 filename = os.path.splitext(file)[0]
                 image_path = os.path.join(dataset_dir, file)
-                label_path = os.path.join(dataset_dir, (filename+"_annotations.json"))
+                label_path = os.path.join(dataset_dir, (filename+"json"+"_annotations.json"))
                 image = skimage.io.imread(image_path)
                 height, width = image.shape[:2]
 
