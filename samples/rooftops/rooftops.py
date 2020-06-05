@@ -128,7 +128,7 @@ class RooftopsDataset(utils.Dataset):
             if file.endswith(".jpg"):
                 filename = os.path.splitext(file)[0]
                 image_path = os.path.join(dataset_dir, file)
-                label_path = os.path.join(dataset_dir, ("/json/"+filename+"__annotations.json"))
+                label_path = os.path.join(dataset_dir, ("json/"+filename+"__annotations.json"))
                 image = skimage.io.imread(image_path)
                 height, width = image.shape[:2]
 
