@@ -125,7 +125,7 @@ class RooftopsDataset(utils.Dataset):
         dataset_dir = os.path.join(dataset_dir, subset)
 
         for file in os.listdir(dataset_dir):
-            if file.endswith(".jpeg"):
+            if file.endswith(".jpg"):
                 filename = os.path.splitext(file)[0]
                 image_path = os.path.join(dataset_dir, file)
                 label_path = os.path.join(dataset_dir, (filename+"json"+"_annotations.json"))
