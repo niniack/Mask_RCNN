@@ -131,14 +131,16 @@ class RooftopsDataset(utils.Dataset):
                 label_path = os.path.join(dataset_dir, ("json/"+filename+"__annotations.json"))
                 image = skimage.io.imread(image_path)
                 height, width = image.shape[:2]
-
-                raw_labels = json.load(open(label_path))
-                self.add_image(
-                    "rooftops",
-                    image_id=filename,  # use file name as a unique image id
-                    path=image_path,
-                    width=width, height=height,
-                    polygons=raw_labels)
+                try:
+                    raw_labels = json.load(open(label_path))
+                    self.add_image(
+                        "rooftops",
+                        image_id=filename,  # use file name as a unique image id
+                        path=image_path,
+                        width=width, height=height,
+                        polygons=raw_labels)
+                except:
+                    continue
 
     def load_mask(self, image_id):
         """Generate instance masks for an image.
