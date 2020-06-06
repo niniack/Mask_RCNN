@@ -181,24 +181,24 @@ class RooftopsDataset(utils.Dataset):
     def configure_mask(self, info, height, width):
 
         ## received format ['regions'][0][i]['x']
-
-        numPoints = len(info['regions'][0])
+        flat_list = [item for sublist in info['regions'] for item in sublist]
+        numPoints = len(flat_list[0])
         xPoints = np.zeros(numPoints)
         yPoints = np.zeros(numPoints)
 
         for i in range(numPoints):
 
             # If x value is greater than width
-            if (info['regions'][0][i]['x'] >= width):
+            if (flat_list[0][i]['x'] >= width):
                 xPoints[i] = width
             else:
-                xPoints[i] = info['regions'][0][i]['x']
+                xPoints[i] = flat_list[0][i]['x']
 
             # If y value is greater than height
-            if (info['regions'][0][i]['y'] >= height):
+            if (flat_list[0][i]['y'] >= height):
                 yPoints[i] = height
             else:
-                yPoints[i] = info['regions'][0][i]['y']
+                yPoints[i] = flat_list[0][i]['y']
 
         return xPoints, yPoints
 
