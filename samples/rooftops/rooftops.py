@@ -170,7 +170,7 @@ class RooftopsDataset(utils.Dataset):
             labelClass = p['label_class']
             labelID = self.class_names.index(labelClass)
             classes[i] = int(labelID)
-            xPoints, yPoints = self.configure_mask(p)
+            xPoints, yPoints = self.configure_mask(p, [info["height"], info["width"])
             rr, cc = skimage.draw.polygon(yPoints, xPoints)
             mask[rr, cc, i] = 1
 
@@ -178,7 +178,7 @@ class RooftopsDataset(utils.Dataset):
         # one class ID only, we return an array of 1s
         return mask.astype(np.bool),  np.array(classes, dtype=np.int32)
 
-    def configure_mask(self, info):
+    def configure_mask(self, info, height, width):
 
         ## received format ['regions'][0][i]['x']
 
@@ -189,14 +189,14 @@ class RooftopsDataset(utils.Dataset):
         for i in range(numPoints):
 
             # If x value is greater than width
-            if (info['regions'][0][i]['x'] >= info["width"]):
-                xPoints[i] = info["width"]
+            if (info['regions'][0][i]['x'] >= width):
+                xPoints[i] = width
             else:
                 xPoints[i] = info['regions'][0][i]['x']
 
             # If y value is greater than height
-            if (info['regions'][0][i]['y'] >= info["height"]):
-                yPoints[i] = info["height"]
+            if (info['regions'][0][i]['y'] >= height):
+                yPoints[i] = height
             else:
                 yPoints[i] = info['regions'][0][i]['y']
 
