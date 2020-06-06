@@ -137,7 +137,7 @@ class RooftopsDataset(utils.Dataset):
                 filename = os.path.splitext(file)[0]
                 image_path = os.path.join(dataset_dir, file)
                 label_path = os.path.join(dataset_dir, ("json/"+filename+"__annotations.json"))
-                image = skimage.io.imread(image_path,plugin='pil')
+                image = skimage.io.imread(image_path)
                 height, width = image.shape[:2]
                 try:
                     raw_labels = json.load(open(label_path))
