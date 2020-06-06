@@ -68,7 +68,7 @@ class RooftopsConfig(Config):
     IMAGES_PER_GPU = 2
 
     # Number of classes (including background)
-    NUM_CLASSES = 1 + 1 # rooftops
+    NUM_CLASSES = 1 + 11 # rooftops
 
     # Number of training steps per epoch
     STEPS_PER_EPOCH = 100
