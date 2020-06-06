@@ -192,13 +192,13 @@ class RooftopsDataset(utils.Dataset):
             if (info['regions'][0][i]['x'] >= width):
                 xPoints[i] = width
             else:
-                xPoints[i] = info['regions'][0][i]['x'] - 1.e-11
+                xPoints[i] = info['regions'][0][i]['x']
 
             # If y value is greater than height
             if (info['regions'][0][i]['y'] >= height):
                 yPoints[i] = height
             else:
-                yPoints[i] = info['regions'][0][i]['y'] - 1.e-11
+                yPoints[i] = info['regions'][0][i]['y']
 
         return xPoints, yPoints
 
