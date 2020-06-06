@@ -169,7 +169,10 @@ class RooftopsDataset(utils.Dataset):
         for i, p in enumerate(info['polygons']):
             labelClass = p['label_class']
             labelID = self.class_names.index(labelClass)
-            classes[i] = int(labelID)
+            if (labelID == None):
+                classes[i] = 0
+            else:
+                classes[i] = int(labelID)
             xPoints, yPoints = self.configure_mask(p, info["height"], info["width"])
             rr, cc = skimage.draw.polygon(yPoints, xPoints)
             mask[rr, cc, i] = 1
