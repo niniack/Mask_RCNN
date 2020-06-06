@@ -187,15 +187,25 @@ class RooftopsDataset(utils.Dataset):
         yPoints = np.zeros(numPoints)
 
         for i in range(numPoints):
-            xPoints[i] = info['regions'][0][i]['x']
-            yPoints[i] = info['regions'][0][i]['y']
+
+            # If x value is greater than width
+            if (info['regions'][0][i]['x'] >= info["width"]):
+                xPoints[i] = info["width"]
+            else:
+                xPoints[i] = info['regions'][0][i]['x']
+
+            # If y value is greater than height
+            if (info['regions'][0][i]['y'] >= info["height"]):
+                yPoints[i] = info["height"]
+            else:
+                yPoints[i] = info['regions'][0][i]['y']
 
         return xPoints, yPoints
 
     def image_reference(self, image_id):
         """Return the path of the image."""
         info = self.image_info[image_id]
-        if info["source"] == "balloon":
+        if info["source"] == "rooftops":
             return info["path"]
         else:
             super(self.__class__, self).image_reference(image_id)
