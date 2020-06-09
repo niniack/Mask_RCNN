@@ -2368,7 +2368,7 @@ class MaskRCNN():
             steps_per_epoch=self.config.STEPS_PER_EPOCH,
             callbacks=callbacks,
             validation_data=val_generator,
-            validation_steps=2,
+            validation_steps=self.config.VALIDATION_STEPS,
             max_queue_size=100,
             workers=1,
             use_multiprocessing=False,
