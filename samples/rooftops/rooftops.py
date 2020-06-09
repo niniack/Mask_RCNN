@@ -66,12 +66,12 @@ class RooftopsConfig(Config):
     NUM_CLASSES = 1 + 11 # rooftops
 
     # Number of training steps per epoch
-    STEPS_PER_EPOCH = 20
+    STEPS_PER_EPOCH = 60
 
     # Skip detections with < 90% confidence
     DETECTION_MIN_CONFIDENCE = 0.9
 
-    VALIDATION_STEPS = 5
+    VALIDATION_STEPS = 6
 
 ############################################################
 #  Dataset
