@@ -1068,7 +1068,7 @@ def rpn_bbox_loss_graph(config, target_bbox, rpn_match, rpn_bbox):
                                    config.IMAGES_PER_GPU)
 
     loss = smooth_l1_loss(target_bbox, rpn_bbox)
-    
+
     loss = K.switch(tf.size(loss) > 0, K.mean(loss), tf.constant(0.0))
     return loss
 
@@ -2368,10 +2368,10 @@ class MaskRCNN():
             steps_per_epoch=self.config.STEPS_PER_EPOCH,
             callbacks=callbacks,
             validation_data=val_generator,
-            validation_steps=self.config.VALIDATION_STEPS,
+            validation_steps=2,
             max_queue_size=100,
-            workers=workers,
-            use_multiprocessing=True,
+            workers=1,
+            use_multiprocessing=False,
         )
         self.epoch = max(self.epoch, epochs)
 
