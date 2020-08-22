@@ -63,7 +63,7 @@ class RooftopsConfig(Config):
     IMAGES_PER_GPU = 1
 
     # Number of classes (including background)
-    NUM_CLASSES = 1 + 11 # rooftops
+    NUM_CLASSES = 1 + 1 # rooftops
 
     # Number of training steps per epoch
     STEPS_PER_EPOCH = 60
@@ -86,16 +86,16 @@ class RooftopsDataset(utils.Dataset):
         """
         # Add classes
         self.add_class("rooftops", 1, "roofplane")
-        self.add_class("rooftops", 2, "vent_pipe")
-        self.add_class("rooftops", 3, "chimney")
-        self.add_class("rooftops", 4, "attic_fan")
-        self.add_class("rooftops", 5, "exhaust_fan")
-        self.add_class("rooftops", 6, "box_vent")
-        self.add_class("rooftops", 7, "sat_dish")
-        self.add_class("rooftops", 8, "hvac")
-        self.add_class("rooftops", 9, "skylight")
-        self.add_class("rooftops", 10, "drain")
-        self.add_class("rooftops", 11, "roof_hatch")
+        # self.add_class("rooftops", 2, "vent_pipe")
+        # self.add_class("rooftops", 3, "chimney")
+        # self.add_class("rooftops", 4, "attic_fan")
+        # self.add_class("rooftops", 5, "exhaust_fan")
+        # self.add_class("rooftops", 6, "box_vent")
+        # self.add_class("rooftops", 7, "sat_dish")
+        # self.add_class("rooftops", 8, "hvac")
+        # self.add_class("rooftops", 9, "skylight")
+        # self.add_class("rooftops", 10, "drain")
+        # self.add_class("rooftops", 11, "roof_hatch")
 
         # Scanifly's Custom Image Annotator at scanifly-cv.herokuapp.com
         # saves each image in the form:
