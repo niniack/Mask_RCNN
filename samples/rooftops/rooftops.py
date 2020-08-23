@@ -168,7 +168,10 @@ class RooftopsDataset(utils.Dataset):
             if (labelClass == None):
                 labelID = 0
             else:
-                labelID = self.class_names.index(labelClass)
+                try:
+                    labelID = self.class_names.index(labelClass)
+                except:
+                    labelID = 0
             classes[i] = int(labelID)
             xPoints, yPoints = self.configure_mask(p, info["height"], info["width"])
             rr, cc = skimage.draw.polygon(yPoints, xPoints)
