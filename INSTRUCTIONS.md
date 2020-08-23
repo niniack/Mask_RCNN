@@ -60,7 +60,7 @@ sudo apt-get install nvidia-driver-440
 1. Load the conda environment
 `conda activate <env-name>`
 
-1. mount the dataset to the compute instance
+1. Mount the dataset to the compute instance
 `gcsfuse --implicit-dirs scfly-cv-dataset ./data`
 
 1. change directory
@@ -71,5 +71,4 @@ sudo apt-get install nvidia-driver-440
 to train a new model:
 `python3 rooftops.py train --dataset=../../../data --weights=coco`
 
-
-1. load up tensorboard
+load up tensorboard
