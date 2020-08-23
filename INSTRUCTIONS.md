@@ -44,7 +44,7 @@ The tree directory in the `scfly-cv-dataset` bucket is as follows:
 ```
 sudo add-apt-repository ppa:graphics-drivers/ppa
 sudo apt-get update
-sudo apt-get install nvidia-driver-440
+sudo apt-get install nvidia-driver-418
 ```
 (Check again)
 `nvidia-smi`
