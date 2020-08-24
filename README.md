@@ -118,3 +118,5 @@ and go to the compute engine IP address:6006 (the port has already been exposed)
 cd ~/Mask_RCNN
 jupyter notebook
 ```
+
+navigate to the samples/rooftops directory and view the notebooks there
