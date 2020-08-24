@@ -28,7 +28,7 @@ The tree directory in the `scfly-cv-dataset` bucket is as follows:
 1. Change directory to Mask_RCNN
 `cd Mask_RCNN`
 
-1. Create the conda environment
+1. Create the conda environment using the file flag
 `conda create --name <env-name> --file working-gpu.txt`
 
 1. Activate the conda environment
@@ -52,6 +52,36 @@ sudo apt-get install nvidia-driver-418
 1. Make a data directory for gcsfuse to connect the bucket to
 `cd ~ && mkdir data`
 
+###Notes
+
+* If you're having ipython/jupyter notebook issues since it is using the wrong python kernel, [read here](https://stackoverflow.com/questions/37061089/trouble-with-tensorflow-in-jupyter-notebook)
+
+* If you're having version compatibilty issues for keras, tensorflow, etc.. follow this matrix:
+
+| Keras | Tensorflow | Tensorflow-GPU | cuDNN | cuda-toolkit | nvidia-drivers |
+|-------|------------|----------------|-------|--------------|----------------|
+| 2.0.8 | 1.14       | 1.14           | 7.4   | 10.1         | 418.39         |
+
+* If the python script using the GPU was terminated but the GPU still hasn't cleared its memory
+
+check your GPU processes
+
+```
+sudo fuser -v /dev/nvidia*
+```
+
+output will look like
+```
+USER        PID  ACCESS COMMAND
+/dev/nvidia0:        root       1256  F...m  Xorg
+username   2057  F...m  nvidia-persis...
+username   20699 F...m  python
+```
+
+kill the python process
+```
+sudo kill -9 PID
+```
 
 ##Operation Instructions
 
@@ -63,12 +93,28 @@ sudo apt-get install nvidia-driver-418
 1. Mount the dataset to the compute instance
 `gcsfuse --implicit-dirs scfly-cv-dataset ./data`
 
-1. change directory
-`cd Mask_RCNN/samples/rooftops`
+1. Change directory
+`cd ~/Mask_RCNN/samples/rooftops`
 
-1. training
+1. Train
 
 to train a new model:
 `python3 rooftops.py train --dataset=../../../data --weights=coco`
 
-load up tensorboard
+to train the last model:
+`python3 rooftops.py train --dataset=../../../data --weights=coco`
+
+to view the loss graphs/dashboard, open a new ssh session
+```
+cd ~/Mask_RCNN
+tensorboard --logdir logs/<latest_time_stamp> --bind_all --port 6006
+```
+
+and go to the compute engine IP address:6006 (the port has already been exposed)
+
+1. View model
+
+```
+cd ~/Mask_RCNN
+jupyter notebook
+```
